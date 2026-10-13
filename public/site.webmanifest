@@ -1,0 +1,13 @@
+{
+  "name": "Catering Moldova",
+  "short_name": "Catering MD",
+  "description": "Catalogul firmelor de catering din Moldova",
+  "start_url": "/ro",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "lang": "ro-MD",
+  "icons": [
+    { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

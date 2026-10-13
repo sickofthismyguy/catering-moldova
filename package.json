@@ -1,0 +1,26 @@
+{
+  "name": "catering-moldova",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Directoriu si piata de servicii catering din Moldova (ro-MD / ru-MD / en)",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "2.58.0",
+    "next": "15.5.26",
+    "react": "19.2.0",
+    "react-dom": "19.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "22.15.3",
+    "@types/react": "19.2.0",
+    "@types/react-dom": "19.2.0",
+    "typescript": "5.8.3"
+  },
+  "engines": {
+    "node": ">=20.9.0"
+  }
+}
