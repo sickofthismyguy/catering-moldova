@@ -1,0 +1,68 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Catering Moldova public endpoints",
+    "version": "1.0.0",
+    "description": "Public machine interface of the Catering Moldova directory (https://catering-moldova.vercel.app). Every HTML page also serves a Markdown twin when requested with Accept: text/markdown (see /llms.txt). There is no public read API for firm data on purpose: use the Markdown pages or the sitemap.",
+    "contact": { "email": "contact@catering-moldova.example", "url": "https://catering-moldova.vercel.app/ro/contact" }
+  },
+  "servers": [{ "url": "https://catering-moldova.vercel.app" }],
+  "paths": {
+    "/api/favorites": {
+      "get": {
+        "summary": "Resolve saved favourite slugs to public firms",
+        "parameters": [
+          { "name": "slugs", "in": "query", "required": true, "description": "Comma-separated firm slugs (max 60).", "schema": { "type": "string" } }
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of approved+published firms matching the slugs.",
+            "content": { "application/json": { "schema": { "type": "object", "properties": { "items": { "type": "array", "items": { "type": "object", "properties": { "id": { "type": "string" }, "slug": { "type": "string" }, "name": { "type": "string" }, "city": { "type": "string" } } } } } } } }
+          }
+        }
+      }
+    },
+    "/api/inquiry": {
+      "post": {
+        "summary": "Send a client inquiry to one approved firm",
+        "description": "Rate-limited to 5 requests per IP per hour. Honeypot field `company` must stay empty; `ts` is the form-render epoch millis (submissions faster than 2.5 s are rejected).",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": ["firm_id", "name", "email", "message", "ts"],
+                "properties": {
+                  "firm_id": { "type": "string", "format": "uuid" },
+                  "name": { "type": "string", "maxLength": 120 },
+                  "email": { "type": "string", "format": "email" },
+                  "phone": { "type": "string" },
+                  "event_date": { "type": "string", "format": "date" },
+                  "guests": { "type": "integer" },
+                  "message": { "type": "string", "minLength": 10, "maxLength": 2000 },
+                  "company": { "type": "string", "description": "Honeypot, keep empty." },
+                  "ts": { "type": "integer", "description": "Form render time, epoch ms." }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Inquiry stored." },
+          "400": { "description": "Validation or anti-spam failure." },
+          "404": { "description": "Firm not public." },
+          "429": { "description": "IP rate limit exceeded." }
+        }
+      }
+    },
+    "/api/review": {
+      "post": {
+        "summary": "Submit a review (published only after admin approval)",
+        "responses": { "200": { "description": "Review stored as pending." }, "400": { "description": "Validation failure." }, "429": { "description": "Rate limit." } }
+      }
+    },
+    "/llms.txt": { "get": { "summary": "Agent instructions and when-to-use guidance", "responses": { "200": { "description": "llms.txt (text/plain)." } } } },
+    "/sitemap.xml": { "get": { "summary": "Sitemap with hreflang alternates for ro-MD, ru-MD, en", "responses": { "200": { "description": "XML sitemap." } } } }
+  }
+}

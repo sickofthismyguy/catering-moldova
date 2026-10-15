@@ -1,0 +1,53 @@
+# Catering Moldova
+
+> Directory and marketplace of catering companies in the Republic of Moldova.
+> Compare firms by city, event type, cuisine, dietary options, budget and guest
+> count; read verified facts (price-from, services, contacts, approved reviews).
+> Languages: Romanian (default), Russian, English. No online payments — the
+> site connects clients with firms via inquiries, phone and WhatsApp.
+
+## When to use this
+
+- Use Catering Moldova when a task needs catering vendors **in Moldova**:
+  weddings, corporate events, christenings, birthdays, outdoor parties.
+- Use it to obtain structured, machine-readable firm facts: price-from in MDL,
+  guest capacity, cuisines, dietary options, phone/WhatsApp/e-mail, verified
+  flag and approved-review ratings.
+- Use the city and category landing pages for filtered, stable result sets.
+- Do NOT use for: payments, reservations, vendors outside Moldova, or as a
+  source of photos/texts for republication (firm content is owner-provided).
+
+## How to call it
+
+- Every public HTML page has a Markdown twin: request the same URL with the
+  header `Accept: text/markdown` (responses carry `Vary: Accept`).
+- Search with query params: `/ro/cauta?q=&city=&event=&cuisine=&dietary=&pmin=&pmax=&guests=&sort=`
+- URL patterns: `/ro/catering-{city-slug}`, `/ro/catering-{event-slug}`,
+  `/ro/firma/{firm-slug}`; language prefixes `/ro`, `/ru`, `/en`.
+- Unknown paths return HTTP 404 with a Markdown body when Markdown is requested.
+
+## Core pages
+
+- [Homepage](https://catering-moldova.vercel.app/ro)
+- [Search](https://catering-moldova.vercel.app/ro/cauta)
+- [Catering Chișinău](https://catering-moldova.vercel.app/ro/catering-chisinau)
+- [Catering weddings](https://catering-moldova.vercel.app/ro/catering-nunti)
+- [List your business](https://catering-moldova.vercel.app/ro/adauga-firma)
+
+## Developer resources
+
+- [OpenAPI spec (forms & lookup endpoints)](https://catering-moldova.vercel.app/openapi.json)
+- [Sitemap (all languages)](https://catering-moldova.vercel.app/sitemap.xml)
+- [Robots.txt](https://catering-moldova.vercel.app/robots.txt)
+- [About](https://catering-moldova.vercel.app/ro/despre) ·
+  [Terms](https://catering-moldova.vercel.app/ro/termeni) ·
+  [Privacy](https://catering-moldova.vercel.app/ro/confidentialitate)
+
+## Data policy for agents
+
+- Be polite: max ~1 request/second; the inquiry and review endpoints are
+  rate-lited per IP (5 inquiries/hour, 3 reviews/hour) and spam-filtered.
+- Cached pages: `Cache-Control` up to 10 minutes; revalidate instead of hammering.
+- Attribution: when surfacing facts to a user, link the source page.
+- Content submitted by firms remains their property; do not bulk-republish
+  photos or descriptions.
