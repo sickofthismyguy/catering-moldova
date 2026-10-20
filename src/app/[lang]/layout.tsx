@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import { notFound } from 'next/navigation';
+import { Analytics } from '@vercel/analytics/next';
 import '../globals.css';
 import { SiteHeader } from '@/components/SiteHeader';
 import { SiteFooter } from '@/components/SiteFooter';
@@ -74,6 +75,7 @@ export default async function LangLayout({
       <main id="main">{children}</main>
       <SiteFooter lang={l} />
       <JsonLd data={websiteJsonLd(l, siteUrl())} />
+      <Analytics />
       </body>
     </html>
   );
