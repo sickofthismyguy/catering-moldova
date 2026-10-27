@@ -1,14 +1,19 @@
 {
-  "has": [
-    {
-      "type": "host",
-      "value": "your-project-name.vercel.app"
-    }
-  ],
   "headers": [
     {
-      "key": "X-Robots-Tag",
-      "value": "all"
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "catering-moldova.vercel.app"
+        }
+      ],
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "all"
+        }
+      ]
     }
   ]
 }
