@@ -1,0 +1,14 @@
+{
+  "has": [
+    {
+      "type": "host",
+      "value": "your-project-name.vercel.app"
+    }
+  ],
+  "headers": [
+    {
+      "key": "X-Robots-Tag",
+      "value": "all"
+    }
+  ]
+}
